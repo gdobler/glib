@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 
 def gplot(xval, yval, sym=None, xr=None, yr=None, title=None, xlabel=None, \
               ylabel=None, tsize=None, xsize=None, ysize=None, color=None, \
-              fnum=None):
+              fnum=None, fname=None):
 
 # -------- defaults
     if sym==None    : sym='k-'
@@ -24,4 +24,14 @@ def gplot(xval, yval, sym=None, xr=None, yr=None, title=None, xlabel=None, \
     plt.title(title, fontsize=tsize)
     plt.xlabel(xlabel, fontsize=xsize)
     plt.ylabel(ylabel, fontsize=ysize)
-    plt.show()
+
+
+# -------- write to output if desired
+    if fname!=None:
+        if not isinstance(fname,list): fname = [fname]
+
+        for ifile in fname:
+            print("GPLOT: Writing output to " + ifile)
+            plt.savefig(ifile)
+    else:
+        plt.show()
